@@ -3,7 +3,7 @@ const webpack = require('webpack')
 module.exports = {
   // Where Webpack looks to load your JavaScript
   entry: {
-    main: path.resolve(__dirname, 'src/index.js'),
+    main: path.resolve(__dirname, 'src/App.js'),
   },
   mode: 'development',
   // Where Webpack spits out the results (the myapp static folder)
@@ -14,7 +14,7 @@ module.exports = {
   // Add a rule so Webpack reads JS with Babel
   module: { rules: [
       {
-          test: /\.js$/,
+          test: /\.js$|jsx/,
           exclude: /node_modules/,
           use: ['babel-loader'],
       },
