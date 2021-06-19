@@ -6,8 +6,6 @@ import SortingVisualizer from './SortingVisualizer/SortingVisualizer';
 
 // Define the React app
 const App = () => {
-  const [count, setCount] = React.useState(0)
-  const onClick = () => setCount(c => c + 1)
   return (
     <div className="App">
       <SortingVisualizer></SortingVisualizer>

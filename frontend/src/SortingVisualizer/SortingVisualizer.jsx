@@ -5,7 +5,7 @@ require('./SortingVisualizer.css')
 const ANIMATION_SPEED_MS = 1;
 
 // Change this value for the number of bars (value) in the array.
-const NUMBER_OF_ARRAY_BARS = 100;
+const NUMBER_OF_ARRAY_BARS = 150;
 
 // This is the main color of the array bars.
 const PRIMARY_COLOR = 'turquoise';
@@ -29,7 +29,7 @@ export default class SortingVisualizer extends React.Component {
   resetArray() {
     const array = [];
     for (let i = 0; i < NUMBER_OF_ARRAY_BARS; i++) {
-      array.push(randomIntFromInterval(5, 100));
+      array.push(randomIntFromInterval(5, 1000));
     }
     this.setState({array});
   }
@@ -71,6 +71,26 @@ export default class SortingVisualizer extends React.Component {
   }
 
 
+  
+  
+  render() {
+    const {array} = this.state;
+    
+    return (
+      <div className="array-container">
+        {array.map((value, idx) => (
+          <div
+          className="array-bar"
+          key={idx}
+          style={{height: `${value}px`}}
+          >
+            {/* comeback here and adjust height to be dynamic based on screensize */}
+            </div>
+        ))}
+        </div>
+    );
+  }
+
   testSortingAlgorithms() {
     for (let i = 0; i < 100; i++) {
       const array = [];
@@ -82,24 +102,6 @@ export default class SortingVisualizer extends React.Component {
       const mergeSortedArray = getMergeSortAnimations(array.slice());
       console.log(arraysAreEqual(javaScriptSortedArray, mergeSortedArray));
     }
-  }
-
-
-  render() {
-    const {array} = this.state;
-
-    return (
-        <>
-        {array.map((value, idx) => (
-          <div
-            className="array-bar"
-            key={idx}
-            >
-                {value}
-            </div>
-        ))}
-        </>
-    );
   }
 }
 

@@ -18,6 +18,7 @@ module.exports = {
           exclude: /node_modules/,
           use: ['babel-loader'],
       },
+      //https://blog.jakoblind.no/css-modules-webpack/ for using multiple rules in webpack.config.js
       {
         test: /\.css$/,
         use: [

@@ -1,11 +1,16 @@
 .array-container {
-  position: absolute;
-  left: 100px;
-  /* top: 100px; */
+  /* position: relative;
+  left: 25%;
+  right: 25%; */
+  white-space: nowrap;
+  margin: auto;
+  /* border: 5px solid; */
+  /* top: 50vh; */
 }
 
 .array-bar {
-  width: 2px;
+  width: 0.25vw; /* come back later to improve, not static value. should be screen */
+  background-color: pink;
   display: inline-block;
-  margin: 0 1px;
+  margin: 0 0.1vw;
 }
