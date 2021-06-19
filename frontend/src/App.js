@@ -14,6 +14,8 @@ const App = () => {
     </div>
   )
 }
+
+
 // Mount the app to the mount point.
 const root = document.getElementById('app')
 ReactDOM.render(<App />, root)

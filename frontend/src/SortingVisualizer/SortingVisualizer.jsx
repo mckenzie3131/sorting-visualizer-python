@@ -1,10 +1,11 @@
 import React from 'react';
+require('./SortingVisualizer.css')
 
 // Change this value for the speed of the animations.
 const ANIMATION_SPEED_MS = 1;
 
 // Change this value for the number of bars (value) in the array.
-const NUMBER_OF_ARRAY_BARS = 310;
+const NUMBER_OF_ARRAY_BARS = 100;
 
 // This is the main color of the array bars.
 const PRIMARY_COLOR = 'turquoise';
@@ -28,10 +29,61 @@ export default class SortingVisualizer extends React.Component {
   resetArray() {
     const array = [];
     for (let i = 0; i < NUMBER_OF_ARRAY_BARS; i++) {
-      array.push(randomIntFromInterval(5, 730));
+      array.push(randomIntFromInterval(5, 100));
     }
     this.setState({array});
   }
+
+  mergeSort() {
+    const animations = getMergeSortAnimations(this.state.array);
+    for (let i = 0; i < animations.length; i++) {
+      const arrayBars = document.getElementsByClassName('array-bar');
+      const isColorChange = i % 3 !== 2;
+      if (isColorChange) {
+        const [barOneIdx, barTwoIdx] = animations[i];
+        const barOneStyle = arrayBars[barOneIdx].style;
+        const barTwoStyle = arrayBars[barTwoIdx].style;
+        const color = i % 3 === 0 ? SECONDARY_COLOR : PRIMARY_COLOR;
+        setTimeout(() => {
+          barOneStyle.backgroundColor = color;
+          barTwoStyle.backgroundColor = color;
+        }, i * ANIMATION_SPEED_MS);
+      } else {
+        setTimeout(() => {
+          const [barOneIdx, newHeight] = animations[i];
+          const barOneStyle = arrayBars[barOneIdx].style;
+          barOneStyle.height = `${newHeight}px`;
+        }, i * ANIMATION_SPEED_MS);
+      }
+    }
+  }
+  
+  quickSort() {
+    // We leave it as an exercise to the viewer of this code to implement this method.
+  }
+
+  heapSort() {
+    // We leave it as an exercise to the viewer of this code to implement this method.
+  }
+
+  bubbleSort() {
+    // We leave it as an exercise to the viewer of this code to implement this method.
+  }
+
+
+  testSortingAlgorithms() {
+    for (let i = 0; i < 100; i++) {
+      const array = [];
+      const length = randomIntFromInterval(1, 1000);
+      for (let i = 0; i < length; i++) {
+        array.push(randomIntFromInterval(-1000, 1000));
+      }
+      const javaScriptSortedArray = array.slice().sort((a, b) => a - b);
+      const mergeSortedArray = getMergeSortAnimations(array.slice());
+      console.log(arraysAreEqual(javaScriptSortedArray, mergeSortedArray));
+    }
+  }
+
 
   render() {
     const {array} = this.state;
@@ -57,12 +109,12 @@ function randomIntFromInterval(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
-// function arraysAreEqual(arrayOne, arrayTwo) {
-//   if (arrayOne.length !== arrayTwo.length) return false;
-//   for (let i = 0; i < arrayOne.length; i++) {
-//     if (arrayOne[i] !== arrayTwo[i]) {
-//       return false;
-//     }
-//   }
-//   return true;
-// }
+function arraysAreEqual(arrayOne, arrayTwo) {
+  if (arrayOne.length !== arrayTwo.length) return false;
+  for (let i = 0; i < arrayOne.length; i++) {
+    if (arrayOne[i] !== arrayTwo[i]) {
+      return false;
+    }
+  }
+  return true;
+}

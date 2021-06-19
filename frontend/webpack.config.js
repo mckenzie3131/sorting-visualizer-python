@@ -18,6 +18,28 @@ module.exports = {
           exclude: /node_modules/,
           use: ['babel-loader'],
       },
+      {
+        test: /\.css$/,
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 1,
+              modules: true
+            }
+          }
+        ],
+        include: /\.module\.css$/
+      },
+      {
+        test: /\.css$/,
+        use: [
+          'style-loader',
+          'css-loader'
+        ],
+        exclude: /\.module\.css$/
+      }
   ]},
   plugins: [
     // Don't output new files if there is an error
@@ -25,7 +47,7 @@ module.exports = {
   ],
   // Where find modules that can be imported (eg. React) 
   resolve: {
-    extensions: ['*', '.js', '.jsx'],
+    extensions: ['*', '.js', '.jsx','.css'],
     modules: [
         path.resolve(__dirname, 'src'),
         path.resolve(__dirname, 'node_modules'),
