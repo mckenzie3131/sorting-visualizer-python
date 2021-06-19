@@ -1,11 +1,6 @@
 .array-container {
-  /* position: relative;
-  left: 25%;
-  right: 25%; */
   white-space: nowrap;
   margin: auto;
-  /* border: 5px solid; */
-  /* top: 50vh; */
 }
 
 .array-bar {
@@ -13,4 +8,8 @@
   background-color: pink;
   display: inline-block;
   margin: 0 0.1vw;
+}
+
+.button-container {
+  margin: 10px;
 }

@@ -77,31 +77,32 @@ export default class SortingVisualizer extends React.Component {
     const {array} = this.state;
     
     return (
-      <div className="array-container">
-        {array.map((value, idx) => (
-          <div
-          className="array-bar"
-          key={idx}
-          style={{height: `${value}px`}}
-          >
-            {/* comeback here and adjust height to be dynamic based on screensize */}
-            </div>
-        ))}
+      <div>
+          <div className="array-container">
+            {array.map((value, idx) => (
+              <div
+              className="array-bar"
+              key={idx}
+              style={{height: `${value}px`}}
+              >
+                {/* comeback here and adjust height to be dynamic based on screensize */}
+              </div>
+            ))}
+          </div>
+          <div className="button-container">
+              <button onClick={() => this.resetArray()}>Create new Array</button>
+              <button onClick={() => this.mergeSort()}>Merge Sort</button>
+              <button onClick={() => this.quickSort()}>Quick Sort</button>
+              <button onClick={() => this.heapSort()}>Heap Sort</button>
+              <button onClick={() => this.bubbleSort()}>Bubble Sort</button>
+          </div>
         </div>
     );
   }
 
   testSortingAlgorithms() {
-    for (let i = 0; i < 100; i++) {
-      const array = [];
-      const length = randomIntFromInterval(1, 1000);
-      for (let i = 0; i < length; i++) {
-        array.push(randomIntFromInterval(-1000, 1000));
-      }
-      const javaScriptSortedArray = array.slice().sort((a, b) => a - b);
-      const mergeSortedArray = getMergeSortAnimations(array.slice());
-      console.log(arraysAreEqual(javaScriptSortedArray, mergeSortedArray));
-    }
+    // to be completed
+    // robust way of testing arrays
   }
 }
 
