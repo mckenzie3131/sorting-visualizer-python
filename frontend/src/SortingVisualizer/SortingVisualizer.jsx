@@ -3,13 +3,13 @@ import { getMergeSortLogic } from '../SortingAlgorithms/mergeSort';
 require('./SortingVisualizer.css')
 
 // Change this value for the speed of the animations.
-const ANIMATION_SPEED_MS = 1;
+const ANIMATION_SPEED_MS = 10;
 
 // Change this value for the number of bars (value) in the array.
 const NUMBER_OF_ARRAY_BARS = 150;
 
 // This is the main color of the array bars.
-const PRIMARY_COLOR = 'turquoise';
+const PRIMARY_COLOR = 'pink';
 
 // This is the color of array bars that are being compared throughout the animations.
 const SECONDARY_COLOR = 'red';
@@ -36,7 +36,6 @@ export default class SortingVisualizer extends React.Component {
   }
 
   mergeSort() {
-    this.testSortingAlgorithms()
     const animations = getMergeSortLogic(this.state.array);
     for (let i = 0; i < animations.length; i++) {
       const arrayBars = document.getElementsByClassName('array-bar');
@@ -97,6 +96,7 @@ export default class SortingVisualizer extends React.Component {
               <button onClick={() => this.quickSort()}>Quick Sort</button>
               <button onClick={() => this.heapSort()}>Heap Sort</button>
               <button onClick={() => this.bubbleSort()}>Bubble Sort</button>
+              <button onClick={() => this.testSortingAlgorithms()}>Test Sorting Algorithms</button>
           </div>
         </div>
     );
