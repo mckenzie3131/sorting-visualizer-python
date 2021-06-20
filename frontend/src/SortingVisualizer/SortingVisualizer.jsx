@@ -84,7 +84,9 @@ export default class SortingVisualizer extends React.Component {
               <div
               className="array-bar"
               key={idx}
-              style={{height: `${value}px`}}
+              style={{
+                background: PRIMARY_COLOR,
+                height: `${value}px`}}
               >
                 {/* comeback here and adjust height to be dynamic based on screensize */}
               </div>

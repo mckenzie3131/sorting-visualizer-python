@@ -5,7 +5,6 @@
 
 .array-bar {
   width: 0.25vw; /* come back later to improve, not static value. should be screen */
-  background-color: pink;
   display: inline-block;
   margin: 0 0.1vw;
 }
