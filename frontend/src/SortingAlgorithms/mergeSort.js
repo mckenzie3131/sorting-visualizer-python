@@ -2,39 +2,39 @@
 
 export function getMergeSortLogic(array){
     const animations = [];
-    // const copy_array = array.slice()
-    mergeSortHelper(array, 0, array.length-1, animations)
+
+    const tempArray = array.slice()
+    mergeSortHelper(array, 0, array.length-1, tempArray,animations)
     // console.log(array)
     return animations
 }
 
-function mergeSortHelper(mainArray, start, end, animations){
+function mergeSortHelper(mainArray, start, end,tempArray, animations){
     if (start < end){
         const mid = Math.floor((end+start)/2)
-        mergeSortHelper(mainArray,start,mid, animations)
-        mergeSortHelper(mainArray,mid+1,end, animations)
-        merge(mainArray, start, mid, end, animations)
+        mergeSortHelper(tempArray,start,mid, mainArray, animations)
+        mergeSortHelper(tempArray,mid+1,end, mainArray, animations)
+        merge(mainArray, start, mid, end, tempArray, animations)
     }
 }
 
-function merge(mainArray, start, mid, end, animations){
-    let copy_array = new Array(end-start+1)
+function merge(mainArray, start, mid, end, tempArray, animations){
     let i = start
     let j = mid+1
-    let k = 0
+    let k = start
 
     while(i <= mid && j <= end){
         animations.push([i,j])
         animations.push([i,j])
-        if (mainArray[i] <= mainArray[j]){
-            animations.push([k,mainArray[i]])
-            copy_array[k] = mainArray[i]
+        if (tempArray[i] <= tempArray[j]){
+            animations.push([k,tempArray[i]])
+            mainArray[k] = tempArray[i]
             k += 1
             i += 1
         }
         else {
-            animations.push([k,mainArray[j]])
-            copy_array[k] = mainArray[j]
+            animations.push([k,tempArray[j]])
+            mainArray[k] = tempArray[j]
             k += 1
             j += 1
         }
@@ -44,8 +44,8 @@ function merge(mainArray, start, mid, end, animations){
         animations.push([i,i])
         animations.push([i,i])
         
-        animations.push([k,mainArray[i]])
-        copy_array[k] = mainArray[i]
+        animations.push([k,tempArray[i]])
+        mainArray[k] = tempArray[i]
         k += 1
         i += 1
     }
@@ -53,15 +53,11 @@ function merge(mainArray, start, mid, end, animations){
     while(j <= end){
         animations.push([j,j])
         animations.push([j,j])
-        animations.push([k,mainArray[j]])
-        copy_array[k] = mainArray[j]
+        
+        animations.push([k,tempArray[j]])
+        mainArray[k] = tempArray[j]
         k += 1
         j += 1
-    }
-
-    // console.log(copy_array)
-    for( let i = start; i < end+1; i++){
-        mainArray[i] = copy_array[i-start]
     }
 
 }
