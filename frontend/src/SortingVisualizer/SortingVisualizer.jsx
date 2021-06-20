@@ -1,4 +1,5 @@
 import React from 'react';
+import { getMergeSortLogic } from '../SortingAlgorithms/mergeSort';
 require('./SortingVisualizer.css')
 
 // Change this value for the speed of the animations.
@@ -35,6 +36,7 @@ export default class SortingVisualizer extends React.Component {
   }
 
   mergeSort() {
+    this.testSortingAlgorithms()
     const animations = getMergeSortLogic(this.state.array);
     for (let i = 0; i < animations.length; i++) {
       const arrayBars = document.getElementsByClassName('array-bar');
@@ -103,6 +105,17 @@ export default class SortingVisualizer extends React.Component {
   testSortingAlgorithms() {
     // to be completed
     // robust way of testing arrays
+    for (let i = 0; i < 100; i++){
+      const array2 = [];
+      for (let j = 0; j < 100; j++) {
+        array2.push(randomIntFromInterval(5, 1000));
+      }
+      let javascript_sort = array2.slice()
+      let mergesort_array = array2.slice()
+      getMergeSortLogic(mergesort_array)
+      javascript_sort.sort(function(a, b){return a - b})
+      console.log(arraysAreEqual(javascript_sort,mergesort_array))
+    }
   }
 }
 
