@@ -9,18 +9,15 @@ function getMergeSortLogic(array){
 }
 
 function mergeSortHelper(mainArray, start, end){
-    if (start < end){
-        mid = Math.floor((end+start)/2)
-        console.log(mid)
-        mergeSortHelper(mainArray,start,mid)
-        mergeSortHelper(mainArray,mid+1,end)
-        merge(mainArray, start, mid, end)
-    }
+    if (start === end) return;
+    const mid = Math.floor((end+start)/2)
+    mergeSortHelper(mainArray,start,mid)
+    mergeSortHelper(mainArray,mid+1,end)
+    merge(mainArray, start, mid, end)
 }
 
 function merge(mainArray, start, mid, end){
     copy_array = new Array(end-start+1)
-    // console.log(mainArray)
     i = start
     j = mid+1
     k = 0
@@ -50,7 +47,7 @@ function merge(mainArray, start, mid, end){
         j += 1
     }
 
-    // console.log(copy_array)
+    console.log(copy_array)
     for( let i = start; i < end+1; i++){
         mainArray[i] = copy_array[i-start]
     }
