@@ -1,4 +1,5 @@
 import React from 'react';
+import { getBubbleSortLogic } from '../SortingAlgorithms/bubbleSort';
 import { getMergeSortLogic } from '../SortingAlgorithms/mergeSort';
 require('./SortingVisualizer.css')
 
@@ -114,9 +115,12 @@ export default class SortingVisualizer extends React.Component {
       }
       let javascript_sort = array2.slice()
       let mergesort_array = array2.slice()
+      let bubblesort_array = array2.slice()
+      getBubbleSortLogic(bubblesort_array)
       getMergeSortLogic(mergesort_array)
       javascript_sort.sort(function(a, b){return a - b})
-      console.log(arraysAreEqual(javascript_sort,mergesort_array))
+      // console.log(arraysAreEqual(javascript_sort,mergesort_array))
+      console.log(arraysAreEqual(javascript_sort,bubblesort_array))
     }
   }
 }
