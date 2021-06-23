@@ -4,7 +4,7 @@ import { getMergeSortLogic } from '../SortingAlgorithms/mergeSort';
 require('./SortingVisualizer.css')
 
 // Change this value for the speed of the animations.
-const ANIMATION_SPEED_MS = 10;
+const ANIMATION_SPEED_MS = 5;
 
 // Change this value for the number of bars (value) in the array.
 const NUMBER_OF_ARRAY_BARS = 150;
@@ -69,7 +69,27 @@ export default class SortingVisualizer extends React.Component {
   }
 
   bubbleSort() {
-    // We leave it as an exercise to the viewer of this code to implement this method.
+    const animations = getBubbleSortLogic(this.state.array);
+    for (let i = 0; i < animations.length; i++) {
+      const arrayBars = document.getElementsByClassName('array-bar');
+      const isColorChange = (i % 4 !== 2 &&  i % 4 !== 3);
+      if (isColorChange) {
+        const [barOneIdx, barTwoIdx] = animations[i];
+        const barOneStyle = arrayBars[barOneIdx].style;
+        const barTwoStyle = arrayBars[barTwoIdx].style;
+        const color = i % 4 === 0 ? SECONDARY_COLOR : PRIMARY_COLOR;
+        setTimeout(() => {
+          barOneStyle.backgroundColor = color;
+          barTwoStyle.backgroundColor = color;
+        }, i * ANIMATION_SPEED_MS);
+      } else {
+        setTimeout(() => {
+          const [barOneIdx, newHeight] = animations[i];
+          const barOneStyle = arrayBars[barOneIdx].style;
+          barOneStyle.height = `${newHeight}px`;
+        }, i * ANIMATION_SPEED_MS);
+      }
+    }
   }
 
 
